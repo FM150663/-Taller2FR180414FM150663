@@ -1,0 +1,46 @@
+<div class="card mt-5">
+    <div class="card-body">
+        <h1>Datos de la Venta</h1>
+        <p>Ingrese los datos de las ventas</p>    
+        <p>Productos dispobibles:</p>
+        <ul id="horizontal-list">
+            <li *ngFor="let prod of listadoProductos" >
+                {{prod.descripcion}}
+            </li>
+        </ul>
+
+
+        <!-- Cuando el evento onSubmit , suceda se va pasar todo el formulario 'registroForm' -->
+        <form #registroForm="ngForm" (ngSubmit)="onSubmit(registroForm)">
+
+            <!-- TO UPDATE -->
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="registroService.registroSeleccionado.$key">            
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="nombre" #name="ngModel"
+                    [(ngModel)]="registroService.registroSeleccionado.nombre" placeholder="Ingrese el nombre">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="dui" #category="ngModel"
+                    [(ngModel)]="registroService.registroSeleccionado.dui" placeholder="Ingrese el dui">
+            </div>
+
+            <div class="form-group">
+                <select class="form-control" name="opcionSeleccionado" #category="ngModel" [(ngModel)]="opcionSeleccionado"> 
+                    <option value="Selecciona" selected="selected">Seleccionar un producto</option>
+                    <option *ngFor="let prod of listadoProductos" value="{{prod.id}}" >{{prod.descripcion}}</option>
+                </select>
+            </div>                        
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-plus-circle"></i> Guardar
+                </button>
+                <button class="btn btn-secondary" type="reset" (click)="resetForm(registroForm)">
+                    <i class="fas fa-sync-alt"></i> Limpiar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

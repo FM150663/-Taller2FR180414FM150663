@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-body">
+        <h6 class="text-center">
+            List of Products
+        </h6>
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Dui</th>
+                    <th>Código producto</th>
+                    <th>Descripción Producto</th>
+                    <th>Precio</th>
+                    <th>Descuento</th>
+                    <th>Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let registro of registroList">            
+                    <td>{{registro.nombre}}</td>
+                    <td>{{registro.dui}}</td>
+                    <td>{{registro.codProducto}}</td>
+                    <td>{{registro.descProducto}}</td>
+                    <td>{{registro.precioProducto}}</td> 
+                    <td>{{registro.descuento}}%</td>
+                    <td>
+                        <a class="btn btn-secondary text-white" (click)="onEdit(registro)">
+                            <i class="far fa-edit"></i>
+                        </a>
+                        <a class="btn btn-danger text-white" (click)="onDelete(registro.$key)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
