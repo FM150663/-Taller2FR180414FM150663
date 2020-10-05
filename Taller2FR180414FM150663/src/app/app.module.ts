@@ -20,13 +20,19 @@ import { RegistroService } from './services/registro.service';
 //Toastr
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ProductsComponent } from './components/products/products.component';
+import { ProductListComponent } from './components/products/product-list/product-list.component';
+import { ProductComponent } from './components/products/product/product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrosComponent,
     RegistroListComponent,
-    RegistroComponent
+    RegistroComponent,
+    ProductsComponent,
+    ProductListComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

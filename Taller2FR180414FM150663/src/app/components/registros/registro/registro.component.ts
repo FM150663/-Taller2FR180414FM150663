@@ -3,8 +3,10 @@ import { NgForm } from '@angular/forms';
 
 //  Service 
 import { RegistroService } from '../../../services/registro.service';
-// Class
+import { ProductService } from '../../../services/product.service';
+// Modelo
 import { Registro } from '../../../models/registro';
+import { Product } from '../../../models/product';
 // toastr
 import { ToastrService } from 'ngx-toastr';
 
@@ -21,19 +23,21 @@ export class RegistroComponent implements OnInit {
   producto3:any;
   producto4:any;
   producto5:any;
-  listadoProductos=[];
+  //listadoProductos=[];
+  listadoProductos: Product[];
   opcionSeleccionado:string;
   reg :Registro = new Registro();
   registroList: Registro[];
   
   constructor(
+    private productoService: ProductService,
     public registroService: RegistroService,
     public toastr: ToastrService
   ) { }
 
   ngOnInit() {
     //lista de productos
-    this.producto1={"id":0,"codigo":"PROD001","descripcion":"Cereal","precio":2.30};
+    /*this.producto1={"id":0,"codigo":"PROD001","descripcion":"Cereal","precio":2.30};
     this.producto2={"id":1,"codigo":"PROD002","descripcion":"Leche","precio":1.20};
     this.producto3={"id":2,"codigo":"PROD003","descripcion":"Huevos","precio":1.00};
     this.producto4={"id":3,"codigo":"PROD004","descripcion":"Carne Congelada","precio":2.00};
@@ -42,11 +46,24 @@ export class RegistroComponent implements OnInit {
     this.listadoProductos.push(this.producto2);
     this.listadoProductos.push(this.producto3);
     this.listadoProductos.push(this.producto4);
-    this.listadoProductos.push(this.producto5);
+    this.listadoProductos.push(this.producto5);*/
+    this.obtenerProductos();
     this.opcionSeleccionado="Selecciona";
     //inicializando
     this.registroService.obtenerRegistros();
     this.resetForm();
+  }
+
+  private obtenerProductos(){
+    this.productoService.obtenerProductos()
+      .snapshotChanges().subscribe(item => {
+        this.listadoProductos = [];
+        item.forEach(element => {
+          let x = element.payload.toJSON();
+          x["$key"] = element.key;
+          this.listadoProductos.push(x as Product);
+        });
+      });
   }
 
   onSubmit(registroForm: NgForm) {

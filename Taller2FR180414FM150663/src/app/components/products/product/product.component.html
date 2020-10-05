@@ -1,0 +1,40 @@
+<div class="card mt-5">
+    <div class="card-body">
+        <h1>Registrar un producto</h1>
+        <!-- Cuando el evento onSubmit , suceda se va pasar todo el formulario 'productForm' -->
+        <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm)">
+
+            <!-- TO UPDATE -->
+            <input type="hidden" name="$key" #$key="ngModel" [(ngModel)]="productoService.productoSeleccionado.$key">            
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="id" #name="ngModel"
+                    [(ngModel)]="productoService.productoSeleccionado.id" placeholder="Ingrese el id">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="codigo" #category="ngModel"
+                    [(ngModel)]="productoService.productoSeleccionado.codigo" placeholder="Ingrese el codigo">
+            </div>
+            
+            <div class="form-group">
+                <input type="text" class="form-control" name="descripcion" #name="ngModel"
+                    [(ngModel)]="productoService.productoSeleccionado.descripcion" placeholder="Ingrese la descripcion">
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" name="precio" #category="ngModel"
+                    [(ngModel)]="productoService.productoSeleccionado.precio" placeholder="Ingrese el precio">
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-plus-circle"></i> Guardar
+                </button>
+                <button class="btn btn-secondary" type="reset" (click)="resetForm(productForm)">
+                    <i class="fas fa-sync-alt"></i> Limpiar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

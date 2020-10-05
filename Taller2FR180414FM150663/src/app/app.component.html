@@ -1,5 +1,6 @@
 <nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">Registros</a>
+  <a class="navbar-brand" [routerLink]="['/registros']">Ventas</a>
+  <a class="navbar-brand" [routerLink]="['/productos']">Productos</a>
 </nav>
-
-<app-registros></app-registros>
+<router-outlet></router-outlet>
+<!--<app-registros></app-registros>-->
